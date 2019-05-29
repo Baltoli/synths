@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import csv
+import random
 
 def header():
     return [
@@ -32,6 +33,23 @@ def format_example(ex):
     row.append(' '.join(map(str, ex['output_mem'])))
 
     return row
+
+# Writing a generator: I think that the important registers for my style of
+# problem are 6, 2 and 0 as follows:
+#   r6 is the last valid index for the first array (i.e. size - 1)
+#   r2 is the first valid index for the next array (i.e. size)
+#   r0 is the number of arrays - in my case 2 for now?
+
+# TODO
+def add_one(length):
+    return {
+        'test': False,
+        'r7': 0, 'r6': length - 1, 'r2': length,
+        'r0': 2, 'r8': 0, 'r9': 0
+    }
+
+def generate_many(gen_f, max_len = 20):
+    pass 
 
 if __name__ == "__main__":
     ex = {
