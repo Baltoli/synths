@@ -34,32 +34,27 @@ def format_example(ex):
 
     return row
 
+def flatten(l):
+    return [i for s in l for i in s]
+
 # Writing a generator: I think that the important registers for my style of
 # problem are 6, 2 and 0 as follows:
 #   r6 is the last valid index for the first array (i.e. size - 1)
 #   r2 is the first valid index for the next array (i.e. size)
 #   r0 is the number of arrays - in my case 2 for now?
 
-# TODO
-def add_one(length):
-    return {
-        'test': False,
-        'r7': 0, 'r6': length - 1, 'r2': length,
-        'r0': 2, 'r8': 0, 'r9': 0
-    }
+def to_raw(ret, inps, outp, test=False):
+    len0 = len(inps[0])
+    assert(all(map(lambda i: len(i) == len0, inps)))
 
-def generate_many(gen_f, max_len = 20):
-    pass 
+    return {
+        'test': test,
+        'r7': 0, 'r6': len0 - 1, 'r2': len0,
+        'r0': len(inps), 'r8': 0, 'r9': 0,
+        'input_mem': flatten(inps),
+        'sc_return_flag': 0, 'sc_return_val': ret,
+        'output_mem_start': 0, 'output_mem': outp
+    }
 
 if __name__ == "__main__":
-    ex = {
-        'test': False,
-        'r7': 3, 'r6': 2, 'r2': 1, 
-        'r0': 8, 'r8': 0, 'r9': 9,
-        'input_mem': [1, 2, 3],
-        'sc_return_flag': 0,
-        'sc_return_val': 0,
-        'output_mem_start': 0,
-        'output_mem': [4, 5, 6]
-    }
-    print(format_example(ex))
+    print(format_example(to_raw(0, [[1, 2, 3]], [2, 4, 6])))
