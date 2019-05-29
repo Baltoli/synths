@@ -56,5 +56,25 @@ def to_raw(ret, inps, outp, test=False):
         'output_mem_start': 0, 'output_mem': outp
     }
 
+def add_one(n):
+    ins = [random.randint(-1E3, 1E3) for _ in range(n)]
+    outs = list(map(lambda x: x + 1, ins))
+    return (0, [ins], outs)
+
+def many(gen_f, n, max_len, with_test = True):
+    ret = [gen_f(random.randint(0, max_len)) for _ in range(max_len)]
+    if with_test:
+        ret.append(gen_f(max_len * 10))
+    return [format_example(to_raw(*r)) for r in ret]
+
+def write_input_file(name, gen_f, n, max_len = 20):
+    with open(name, 'w') as f:
+        writer = csv.writer(f, delimiter='\t')
+        rows = many(gen_f, n, max_len)
+        
+        writer.writerow(header())
+        for r in rows:
+            writer.writerow(r)
+
 if __name__ == "__main__":
-    print(format_example(to_raw(0, [[1, 2, 3]], [2, 4, 6])))
+    write_input_file('test.tsv', add_one, 50)
