@@ -1,5 +1,5 @@
 CC=gcc
-LUAJITDIR=./luajit-2.0  # Configure with your location of LuaJIT, available from https://luajit.org/download.html
+LUAJITDIR=../../LuaJIT-2.1.0-beta3
 
 all: makespeare-x86-64 makespeare-tis100
 
