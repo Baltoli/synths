@@ -1,0 +1,15 @@
+{
+    "name": "id",
+    "description": "Returns the id iduct of two lists.",
+    "kind": "examples",
+    "blacklist": [],
+    "contents": {
+        "examples": [
+            "(id []) -> []",
+            "(id [3]) -> [3]",
+            "(id [4 5]) -> [4 5]",
+            "(id [2 3 7]) -> [2 3 7]"
+        ],
+        "background": []
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "name": "prod",
+    "description": "Returns the prod product of two lists.",
+    "kind": "examples",
+    "blacklist": [],
+    "contents": {
+        "examples": [
+            "(prod [[] []]) -> []",
+            "(prod [[1] [2]]) -> [3]",
+            "(prod [[4] [3]]) -> [7]"
+        ],
+        "background": []
+    }
+}
