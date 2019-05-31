@@ -1,0 +1,16 @@
+# =========================
+# Ocaml build files
+# =========================
+
+*.cm[iotx]
+*.annot
+*.o
+*.native
+*.byte
+*.depends
+_build/
+setup.data
+setup.log
+
+.merlin
+*.install
